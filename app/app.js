@@ -3,15 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/indexUsuario');
 //var usersRouter = require('./routes/users');
-var pensumsRouter = require('./routes/pensumsRouter');
-var encuestasRouter = require('./routes/encuestasRouter');
-var clasesAprobadasRouter = require('./routes/clasesAprobadasRouter');
-var usuariosRouter = require('./routes/usuariosRouter');
-var catedraticosRouter = require('./routes/catedraticosRouter');
 
 var app = express();
 
@@ -26,25 +20,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-//app.use('/api/users', usersRouter);
-app.use('/api/pensums', pensumsRouter);
-app.use('/api/encuestas', encuestasRouter);
-app.use('/api/clasesAprobadas', clasesAprobadasRouter);
-app.use('/api/usuarios', usuariosRouter);
-app.use('/api/catedraticos', catedraticosRouter);
+//app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
-});
-
-mongoose.connect('mongodb://jrivera30:Chicoguada14uf@ds155903.mlab.com:55903/restapi',{ useNewUrlParser: true }, function(err, res) {
-  if(err) {
-    console.log('ERROR: connecting to Database. ' + err);
-  }
-  else{
-    console.log('Conexion base de datos OK');
-  }
 });
 
 // error handler

@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "11"
+jdk:
+  - oraclejdk8  
+addons:
+  sonarcloud: true
+script:
+  - npm run test-with-coverage
+  - sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.organization=imaxmunguia-github -Dsonar.projectKey=DAV.ConsultaVirtual -Dsonar.sources='./' -X
